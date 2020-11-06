@@ -12,3 +12,28 @@
 .grid__element:nth-child(3n+3) {
     margin: 0 0 20px 0;
 }
+
+@media screen and (max-width: 979px) {
+    .grid__element:nth-child(3n+3) {
+        margin: 0 17px 20px 0;
+    }
+    
+    .grid__element:nth-child(2n+2) {
+        margin: 0 0 20px 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .grid__element:nth-child(3n+3) {
+        margin: 0 0 20px 0;;
+    }
+    
+    .grid__element:nth-child(2n+2) {
+        margin: 0 0 20px 0;
+    }
+
+    .grid__element {
+        margin: 0 0 20px 0;
+    }
+}
+
