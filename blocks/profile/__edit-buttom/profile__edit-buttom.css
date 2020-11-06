@@ -9,6 +9,7 @@
     background-position: center;
     box-sizing: border-box;
     padding: 0;
+    -webkit-appearance: button;
 }
 
 @media screen and (max-width: 767px) {
