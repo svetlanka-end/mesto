@@ -1,0 +1,8 @@
+.grid__like-button {
+    background-image: url(../../../images/like.svg);
+    background-repeat: no-repeat;
+    width: 20.67px;
+    border: none;
+    background-color: #ffffff;
+    margin: 6px 15px 0 0;
+}

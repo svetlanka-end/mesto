@@ -1,0 +1,19 @@
+.profile__edit-buttom {
+    margin: 0 0 0 18px;
+    border: 1px solid #ffffff;
+    height: 24px;
+    width: 24px;
+    background-image: url(../../../images/pencil.svg);
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__edit-buttom {
+        width: 18px;
+        height: 18px;
+        margin: 0 0 0 10px;
+    }
+}
