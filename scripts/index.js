@@ -9,11 +9,11 @@ let lastFieles = document.querySelector('.popup__input_type_title');
 let saveButton = document.querySelector('.popup__save');
 
 function showPopup () {
-    popup.classList.add('popup_opened');
+    popup.classList.add('popup_state_opened');
 }
 
 function closePopup () {
-    popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_state_opened');
 }
 
 editButton.addEventListener('click', showPopup);
