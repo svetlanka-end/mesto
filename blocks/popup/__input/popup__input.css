@@ -1,0 +1,14 @@
+.popup__input {
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+    font-family: 'Inter', Arial, sans-serif;
+    padding: 0;
+    min-height: 27px;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.popup__input:hover {
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.6) 1px solid;
+}

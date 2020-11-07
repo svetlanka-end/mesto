@@ -10,6 +10,11 @@
     box-sizing: border-box;
     padding: 0;
     -webkit-appearance: button;
+    cursor: pointer;
+}
+
+.profile__edit-buttom:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 767px) {
