@@ -13,3 +13,27 @@
     border: none;
     border-bottom: rgba(0, 0, 0, 0.6) 1px solid;
 }
+
+.popup__input:focus {
+    border: rgba(0, 0, 0, 0.6) 2px solid;
+}
+
+.popup__input:first-child {
+    margin: 0 0 27px 0;
+}
+
+@media screen and (max-width: 500px) {
+    .popup__input:first-child {
+        margin: 0 0 30px 0;
+    }
+}
+
+.popup__input:last-child {
+    margin: 0 0 48px 0;
+}
+
+@media screen and (max-width: 500px) {
+    .popup__input:last-child {
+        margin: 0 0 45px 0;
+    }
+}

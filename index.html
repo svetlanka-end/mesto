@@ -15,53 +15,53 @@
             <div class="profile__description">
                 <img class="profile__avatar" alt="Аватар" src="./images/avatar.jpg">
                 <div class="profile__profile-info">
-                    <h1 class="profile__first-name">Жак-Ив Кусто</h1><button class="profile__edit-button"></button>
+                    <h1 class="profile__first-name">Жак-Ив Кусто</h1><button type="button" class="profile__edit-button" aria-label="edit"></button>
                     <p class="profile__last-name">Исследователь океана</p>
                 </div>
             </div>
-            <button class="profile__add-button"></button>
+            <button type="button" class="profile__add-button" aria-label="add"></button>
         </section>
         <section class="grid">
             <div class="grid__element">
                 <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
                 <div class="grid__info">
                     <h2 class="grid__name">Карачаевск</h2>
-                    <button class="grid__like-button"></button>
+                    <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
             <div class="grid__element">
                 <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1404681-unsplash.jpg">
                 <div class="grid__info">
                     <h2 class="grid__name">Гора Эльбрус</h2>
-                    <button class="grid__like-button"></button>
+                    <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
             <div class="grid__element">
                 <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1556355-unsplash.jpg">
                 <div class="grid__info">
                     <h2 class="grid__name">Домбай</h2>
-                    <button class="grid__like-button"></button>
+                    <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
             <div class="grid__element">
                 <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1404686-unsplash.jpg">
                 <div class="grid__info">
                     <h2 class="grid__name">Гора Эльбрус</h2>
-                    <button class="grid__like-button"></button>
+                    <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
             <div class="grid__element">
                 <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1556355-unsplash.jpg">
                 <div class="grid__info">
                     <h2 class="grid__name">Домбай</h2>
-                    <button class="grid__like-button"></button>
+                    <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
             <div class="grid__element">
                 <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
                 <div class="grid__info">
                     <h2 class="grid__name">Карачаево-Черкессия</h2>
-                    <button class="grid__like-button"></button>
+                    <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
         </section>
@@ -70,11 +70,11 @@
         </footer>
         <div class="popup">
             <div class="popup__content">
-                <button type="button" class="popup__close"></button>
+                <button type="button" type="button" class="popup__close"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__form">
-                    <input class="popup__input popup__input_type_name" value="Жак-Ив Кусто">
-                    <input class="popup__input popup__input_type_title" value="Исследователь океана">
+                <form class="popup__form" name="form">
+                    <input placeholder='Имя' class="popup__input popup__input_type_name" value="Жак-Ив Кусто" name="firstname">
+                    <input placeholder='Профессия' class="popup__input popup__input_type_title" value="Исследователь океана" name="lastname">
                     <button type="submit" class="popup__save">Сохранить</button>
                 </form>
             </div>

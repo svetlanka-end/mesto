@@ -1,10 +1,10 @@
 .profile__edit-button {
-    margin: 0 0 0 18px;
+    margin: 0 0 8px 18px;
     border: 1px solid #ffffff;
     height: 24px;
     width: 24px;
     background-image: url(../../../images/pencil.svg);
-    background-color: #000000;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     box-sizing: border-box;
@@ -19,8 +19,18 @@
 
 @media screen and (max-width: 767px) {
     .profile__edit-button {
+        background-size: 7.5px 7.5px;
         width: 18px;
         height: 18px;
-        margin: 0 0 0 10px;
+        margin: 0 0 6px 10px;
     }
 }
+
+@media screen and (max-width: 767px) {
+    @-moz-document url-prefix() {
+        .profile__edit-button {
+            margin: 0 0 5px 10px;
+        }
+      }
+}
+

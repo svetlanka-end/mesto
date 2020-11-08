@@ -6,6 +6,11 @@
     line-height: 48px;
     margin: 0;
     display: inline-block;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 400px;
+    vertical-align: bottom;
 }
 
 
@@ -15,5 +20,6 @@
         line-height: 33px;
         text-align: center;
         margin: 22.25px 0 0 0;
+        max-width: 269px;
     }
 }

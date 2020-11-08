@@ -9,11 +9,13 @@ let lastFieles = document.querySelector('.popup__input_type_title');
 let saveButton = document.querySelector('.popup__save');
 
 function showPopup () {
-    popup.classList.add('popup_state_opened');
+    popup.classList.add('popup_opened');
+    nameFieled.value = firstName.textContent;
+    lastFieles.value = lastName.textContent;
 }
 
 function closePopup () {
-    popup.classList.remove('popup_state_opened');
+    popup.classList.remove('popup_opened');
 }
 
 editButton.addEventListener('click', showPopup);
@@ -23,7 +25,7 @@ function submitForm (event) {
     event.preventDefault();
     firstName.textContent = nameFieled.value;
     lastName.textContent = lastFieles.value;
+    closePopup();
 }
 
 form.addEventListener('submit', submitForm);
-saveButton.addEventListener('click', closePopup);
