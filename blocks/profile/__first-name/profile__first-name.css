@@ -6,7 +6,7 @@
     line-height: 48px;
     margin: 0;
     display: inline-block;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     max-width: 400px;
