@@ -28,12 +28,12 @@
     }
 }
 
-.popup__input:last-child {
+.popup__input:last-of-type {
     margin: 0 0 48px 0;
 }
 
 @media screen and (max-width: 500px) {
-    .popup__input:last-child {
+    .popup__input:last-of-type {
         margin: 0 0 45px 0;
     }
 }
