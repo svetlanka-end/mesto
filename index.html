@@ -22,48 +22,16 @@
             <button type="button" class="profile__add-button" aria-label="add"></button>
         </section>
         <section class="grid">
+        <template class="grid-tamplate">
             <div class="grid__element">
-                <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
+                    <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
+                    <button class="grid__delete" aria-label="delete" type="button"></button>
                 <div class="grid__info">
                     <h2 class="grid__name">Карачаевск</h2>
                     <button type="button" class="grid__like-button" aria-label="like"></button>
                 </div>
             </div>
-            <div class="grid__element">
-                <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1404681-unsplash.jpg">
-                <div class="grid__info">
-                    <h2 class="grid__name">Гора Эльбрус</h2>
-                    <button type="button" class="grid__like-button" aria-label="like"></button>
-                </div>
-            </div>
-            <div class="grid__element">
-                <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1556355-unsplash.jpg">
-                <div class="grid__info">
-                    <h2 class="grid__name">Домбай</h2>
-                    <button type="button" class="grid__like-button" aria-label="like"></button>
-                </div>
-            </div>
-            <div class="grid__element">
-                <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1404686-unsplash.jpg">
-                <div class="grid__info">
-                    <h2 class="grid__name">Гора Эльбрус</h2>
-                    <button type="button" class="grid__like-button" aria-label="like"></button>
-                </div>
-            </div>
-            <div class="grid__element">
-                <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1556355-unsplash.jpg">
-                <div class="grid__info">
-                    <h2 class="grid__name">Домбай</h2>
-                    <button type="button" class="grid__like-button" aria-label="like"></button>
-                </div>
-            </div>
-            <div class="grid__element">
-                <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
-                <div class="grid__info">
-                    <h2 class="grid__name">Карачаево-Черкессия</h2>
-                    <button type="button" class="grid__like-button" aria-label="like"></button>
-                </div>
-            </div>
+        </template>
         </section>
         <footer class="footer">
             <p class="footer__text">&#169; 2020 Mesto Russia</p>
@@ -77,6 +45,24 @@
                     <input placeholder='Профессия' class="popup__input popup__input_type_title" value="Исследователь океана" name="lastname">
                     <button type="submit" class="popup__save">Сохранить</button>
                 </form>
+            </div>
+        </div>
+        <div class="popup-add">
+            <div class="popup-add__content">
+                <button type="button" class="popup-add__close"></button>
+                <h3 class="popup-add__title">Новое место</h3>
+                <form class="popup-add__form" name="form">
+                    <input placeholder='Название' class="popup-add__input popup-add__input_type_name" name="mesto">
+                    <input placeholder='Ссылка на картинку' class="popup-add__input popup-add__input_type_photo" name="photo">
+                    <button type="submit" class="popup-add__add">Создать</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup-photo">
+            <div class="popup-photo__container">
+                <img class="popup-photo__photo" alt='Фотография из путешеуствия' src="./images/catbread-01.jpg">
+                <h2 class="popup-photo__name">кот</h2>
+                <button type="button" class="popup-photo__close"></button>
             </div>
         </div>
     </div>

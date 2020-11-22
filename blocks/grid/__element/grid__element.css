@@ -7,6 +7,7 @@
     color: #000000;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    position: relative;
 }
 
 .grid__element:nth-child(3n+3) {
