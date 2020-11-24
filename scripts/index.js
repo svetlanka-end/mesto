@@ -89,8 +89,8 @@ function createCard(name, link) {
         showPopup(popupPhoto);
         const photo = document.querySelector('.popup-photo__photo');
         photo.src = link;
-        const name = document.querySelector('.popup-photo__name');
-        name.textContent = name;
+        const namePhoto = document.querySelector('.popup-photo__name');
+        namePhoto.textContent = name;
     });
 
     return mestoElement;
