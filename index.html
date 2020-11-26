@@ -36,7 +36,7 @@
         <footer class="footer">
             <p class="footer__text">&#169; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup_place_edit">
             <div class="popup__content">
                 <button type="button" class="popup__close"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
@@ -47,22 +47,23 @@
                 </form>
             </div>
         </div>
-        <div class="popup-add">
-            <div class="popup-add__content">
-                <button type="button" class="popup-add__close"></button>
-                <h3 class="popup-add__title">Новое место</h3>
-                <form class="popup-add__form" name="form">
-                    <input placeholder='Название' class="popup-add__input popup-add__input_type_name" name="mesto">
-                    <input placeholder='Ссылка на картинку' class="popup-add__input popup-add__input_type_photo" name="photo" type="url">
-                    <button type="submit" class="popup-add__add">Создать</button>
+        <div class="popup popup_place_add">
+            <div class="popup__content">
+                <button type="button" class="popup__close popup__close_place_add"></button>
+                <h3 class="popup__title">Новое место</h3>
+                <form class="popup__form popup__form_place_add" name="form">
+                    <input placeholder='Название' class="popup__input popup__input_type_name-add" name="mesto">
+                    <input placeholder='Ссылка на картинку' class="popup__input popup__input_type_photo-add" name="photo" type="url">
+                    <button type="submit" class="popup__save">Создать</button>
                 </form>
             </div>
         </div>
-        <div class="popup-photo">
-            <div class="popup-photo__container">
-                <img class="popup-photo__photo" alt='Фотография из путешеуствия' src="./images/catbread-01.jpg">
-                <h2 class="popup-photo__name">кот</h2>
-                <button type="button" class="popup-photo__close"></button>
+        
+        <div class="popup popup_place_photo">
+            <div class="popup__photo-container">
+                <img class="popup__photo" alt='Фотография из путешеуствия' src="./images/catbread-01.jpg">
+                <h2 class="popup__name-photo">кот</h2>
+                <button type="button" class="popup__close popup__close_place_photo"></button>
             </div>
         </div>
     </div>

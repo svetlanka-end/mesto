@@ -1,4 +1,4 @@
-const popup = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup_place_edit');
 const popupCloseButton = document.querySelector('.popup__close');
 const editButton = document.querySelector('.profile__edit-button');
 const firstName = document.querySelector('.profile__first-name');
@@ -6,7 +6,6 @@ const lastName = document.querySelector('.profile__last-name');
 const form = document.querySelector('.popup__form');
 const nameFieled = document.querySelector('.popup__input_type_name');
 const lastFieles = document.querySelector('.popup__input_type_title');
-const saveButton = document.querySelector('.popup__save');
 
 const initialCards = [
     {
@@ -35,38 +34,41 @@ const initialCards = [
     }
 ]; 
 
-function showPopup (popupAll) {
-    popupAll.classList.add('popup_opened');
+function showPopup (popup) {
+    popup.classList.add('popup_opened');
 }
 
-function closePopup (popupAll) {
-    popupAll.classList.remove('popup_opened');
+function closePopup (popup) {
+    popup.classList.remove('popup_opened');
 }
 
 editButton.addEventListener('click', function() {
-    showPopup(popup);
+    showPopup(popupEdit);
     nameFieled.value = firstName.textContent;
     lastFieles.value = lastName.textContent;
 });
 
 popupCloseButton.addEventListener('click', function() {
-    closePopup(popup);
+    closePopup(popupEdit);
 });
 
 function submitForm (event) {
     event.preventDefault();
     firstName.textContent = nameFieled.value;
     lastName.textContent = lastFieles.value;
-    closePopup(popup);
+    closePopup(popupEdit);
 }
 
 form.addEventListener('submit', submitForm);
 
+/**
+ * создание и добавление карточек
+ */
+
 const mestoList = document.querySelector('.grid');
 const mestoTemplate = document.querySelector('.grid-tamplate').content;
-
-const popupPhoto = document.querySelector('.popup-photo');
-const closePhoto = document.querySelector('.popup-photo__close')
+const popupPhoto = document.querySelector('.popup_place_photo');
+const closePhoto = document.querySelector('.popup__close_place_photo')
 
 function createCard(name, link) {
     const mestoElement = mestoTemplate.cloneNode(true);
@@ -87,9 +89,9 @@ function createCard(name, link) {
     const mestoPhoto = mestoElement.querySelector('.grid__photo');
     mestoPhoto.addEventListener('click', function() {
         showPopup(popupPhoto);
-        const photo = document.querySelector('.popup-photo__photo');
+        const photo = document.querySelector('.popup__photo');
         photo.src = link;
-        const namePhoto = document.querySelector('.popup-photo__name');
+        const namePhoto = document.querySelector('.popup__name-photo');
         namePhoto.textContent = name;
     });
 
@@ -102,32 +104,39 @@ function addCard(container, cardElement) {
 
 initialCards.forEach((value) => addCard(mestoList, createCard(value.name, value.link)));
 
+/**
+ * попап фото
+ */
+
 closePhoto.addEventListener('click', function() {
     closePopup(popupPhoto);
-    formAdd.reset();
 });
 
-const popupAdd = document.querySelector('.popup-add');
-const popupAddCloseButton = document.querySelector('.popup-add__close');
+const popupAdd = document.querySelector('.popup_place_add');
+const popupAddCloseButton = document.querySelector('.popup__close_place_add');
 const addPopupButton = document.querySelector('.profile__add-button');
 
 addPopupButton.addEventListener('click', function() {
     showPopup(popupAdd);
+    formAdd.reset();
 });
 
 popupAddCloseButton.addEventListener('click', function() {
     closePopup(popupAdd);
-    formAdd.reset();
 });
 
-const formAdd = document.querySelector('.popup-add__form');
-const nameAdd = document.querySelector('.popup-add__input_type_name');
-const photoAdd = document.querySelector('.popup-add__input_type_photo');
+/**
+ * форма отправления новой карточки
+ */
+
+const formAdd = document.querySelector('.popup__form_place_add');
+const nameAdd = document.querySelector('.popup__input_type_name-add');
+const photoAdd = document.querySelector('.popup__input_type_photo-add');
 
 function submitFormAdd (event) {
     event.preventDefault();
 
-    let item = {
+    const item = {
         name: nameAdd.value,
         link: photoAdd.value
     }
@@ -138,3 +147,6 @@ function submitFormAdd (event) {
 }
 
 formAdd.addEventListener('submit', submitFormAdd);
+
+const close = document.querySelectorAll('.popup__close');
+const popup = document.querySelectorAll('.popup');
