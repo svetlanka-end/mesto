@@ -6,7 +6,18 @@ const lastName = document.querySelector('.profile__last-name');
 const form = document.querySelector('.popup__form');
 const nameFieled = document.querySelector('.popup__input_type_name');
 const lastFieles = document.querySelector('.popup__input_type_title');
-
+const mestoList = document.querySelector('.grid');
+const mestoTemplate = document.querySelector('.grid-tamplate').content;
+const popupPhoto = document.querySelector('.popup_place_photo');
+const closePhoto = document.querySelector('.popup__close_place_photo');
+const popupAdd = document.querySelector('.popup_place_add');
+const popupAddCloseButton = document.querySelector('.popup__close_place_add');
+const addPopupButton = document.querySelector('.profile__add-button');
+const formAdd = document.querySelector('.popup__form_place_add');
+const nameAdd = document.querySelector('.popup__input_type_name-add');
+const photoAdd = document.querySelector('.popup__input_type_photo-add');
+const popupBackground = document.querySelectorAll('.popup__popup-close');
+const popupArray = document.querySelectorAll('.popup');
 const initialCards = [
     {
         name: 'Архыз',
@@ -56,7 +67,6 @@ function resetError(popup) {
     popup.querySelectorAll('.input-error').forEach((item) => {
         item.textContent = '';
     })
-    popup.querySelector('.popup__save').classList.remove('popup__button_disabled');
     popup.querySelectorAll('.popup__input').forEach((item) => {
         item.classList.remove('popup__input_type_error');
     })
@@ -73,9 +83,6 @@ popupCloseButton.addEventListener('click', function() {
     closePopup(popupEdit);
 });
 
-
-
-
 function submitForm (event) {
     event.preventDefault();
     firstName.textContent = nameFieled.value;
@@ -88,11 +95,6 @@ form.addEventListener('submit', submitForm);
 /**
  * создание и добавление карточек
  */
-
-const mestoList = document.querySelector('.grid');
-const mestoTemplate = document.querySelector('.grid-tamplate').content;
-const popupPhoto = document.querySelector('.popup_place_photo');
-const closePhoto = document.querySelector('.popup__close_place_photo')
 
 function createCard(name, link) {
     const mestoElement = mestoTemplate.cloneNode(true);
@@ -126,8 +128,6 @@ function addCard(container, cardElement) {
     container.prepend(cardElement);
 }
 
-initialCards.forEach((value) => addCard(mestoList, createCard(value.name, value.link)));
-
 /**
  * попап фото
  */
@@ -136,14 +136,11 @@ closePhoto.addEventListener('click', function() {
     closePopup(popupPhoto);
 });
 
-const popupAdd = document.querySelector('.popup_place_add');
-const popupAddCloseButton = document.querySelector('.popup__close_place_add');
-const addPopupButton = document.querySelector('.profile__add-button');
-
 addPopupButton.addEventListener('click', function() {
     showPopup(popupAdd);
     formAdd.reset();
     resetError(popupAdd);
+    popupAdd.querySelector('.popup__save').classList.add('popup__button_disabled');
 });
 
 popupAddCloseButton.addEventListener('click', function() {
@@ -153,10 +150,6 @@ popupAddCloseButton.addEventListener('click', function() {
 /**
  * форма отправления новой карточки
  */
-
-const formAdd = document.querySelector('.popup__form_place_add');
-const nameAdd = document.querySelector('.popup__input_type_name-add');
-const photoAdd = document.querySelector('.popup__input_type_photo-add');
 
 function submitFormAdd (event) {
     event.preventDefault();
@@ -173,9 +166,6 @@ function submitFormAdd (event) {
 
 formAdd.addEventListener('submit', submitFormAdd);
 
-const popupBackground = document.querySelectorAll('.popup__popup-close');
-const popupArray = document.querySelectorAll('.popup');
-
 popupBackground.forEach((item) => {
     item.addEventListener('click', () => {
         popupArray.forEach((item) => {
@@ -183,3 +173,5 @@ popupBackground.forEach((item) => {
         })
     })
 })
+
+initialCards.forEach((value) => addCard(mestoList, createCard(value.name, value.link)));
