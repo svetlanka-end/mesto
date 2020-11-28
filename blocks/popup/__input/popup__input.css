@@ -7,15 +7,12 @@
     font-size: 14px;
     line-height: 17px;
     border-radius: 0;
+    width: 100%;
 }
 
 .popup__input:hover {
     border: none;
     border-bottom: rgba(0, 0, 0, 0.6) 1px solid;
-}
-
-.popup__input:focus {
-    border: rgba(0, 0, 0, 0.6) 2px solid;
 }
 
 .popup__input:first-child {
