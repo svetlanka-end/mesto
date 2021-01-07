@@ -1,3 +1,6 @@
+import { FormValidator } from './validate.js'
+import { Card } from './Card.js'
+
 const popupEdit = document.querySelector('.popup_place_edit');
 const popupCloseButton = document.querySelector('.popup__close');
 const editButton = document.querySelector('.profile__edit-button');
@@ -7,9 +10,6 @@ const form = document.querySelector('.popup__form');
 const nameFieled = document.querySelector('.popup__input_type_name');
 const lastFieles = document.querySelector('.popup__input_type_title');
 const mestoList = document.querySelector('.grid');
-const mestoTemplate = document.querySelector('.grid-tamplate').content;
-const popupPhoto = document.querySelector('.popup_place_photo');
-const closePhoto = document.querySelector('.popup__close_place_photo');
 const popupAdd = document.querySelector('.popup_place_add');
 const popupAddCloseButton = document.querySelector('.popup__close_place_add');
 const addPopupButton = document.querySelector('.profile__add-button');
@@ -18,6 +18,16 @@ const nameAdd = document.querySelector('.popup__input_type_name-add');
 const photoAdd = document.querySelector('.popup__input_type_photo-add');
 const popupBackground = document.querySelectorAll('.popup__popup-close');
 const popupArray = document.querySelectorAll('.popup');
+const formOne = document.querySelector('.popup__form1');
+const validationOptions = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+}
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -93,48 +103,14 @@ function submitForm (event) {
 form.addEventListener('submit', submitForm);
 
 /**
- * создание и добавление карточек
+ *  добавление карточек
  */
-
-function createCard(name, link) {
-    const mestoElement = mestoTemplate.cloneNode(true);
-    
-    mestoElement.querySelector('.grid__name').textContent = name;
-    mestoElement.querySelector('.grid__photo').src = link;
-
-    const mestoDelete = mestoElement.querySelector('.grid__delete');
-    mestoDelete.addEventListener('click', event => {
-        event.target.closest('.grid__element').remove()
-    });
-    
-    const likeButton = mestoElement.querySelector('.grid__like-button');
-    likeButton.addEventListener('click', function() {
-        likeButton.classList.toggle('grid__button_active');
-    });
-
-    const mestoPhoto = mestoElement.querySelector('.grid__photo');
-    mestoPhoto.addEventListener('click', function() {
-        showPopup(popupPhoto);
-        const photo = document.querySelector('.popup__photo');
-        photo.src = link;
-        const namePhoto = document.querySelector('.popup__name-photo');
-        namePhoto.textContent = name;
-    });
-
-    return mestoElement;
-} 
 
 function addCard(container, cardElement) {
     container.prepend(cardElement);
 }
 
-/**
- * попап фото
- */
 
-closePhoto.addEventListener('click', function() {
-    closePopup(popupPhoto);
-});
 
 addPopupButton.addEventListener('click', function() {
     showPopup(popupAdd);
@@ -159,10 +135,18 @@ function submitFormAdd (event) {
         link: photoAdd.value
     }
 
-    addCard(mestoList, createCard(item.name, item.link));
+    addCard(mestoList, add(item.name, item.link));
+
     closePopup(popupAdd);
     formAdd.reset();
 }
+
+function add(name, link) {
+    const card = new Card(name, link, '.grid-tamplate');
+    return card.createCard();
+}
+
+
 
 formAdd.addEventListener('submit', submitFormAdd);
 
@@ -174,4 +158,9 @@ popupBackground.forEach((item) => {
     })
 })
 
-initialCards.forEach((value) => addCard(mestoList, createCard(value.name, value.link)));
+initialCards.forEach((value) => addCard(mestoList, add(value.name, value.link, '.grid-tamplate')));
+
+const form1 = new FormValidator(validationOptions, formOne);
+form1.enableValidation();
+const form2 = new FormValidator(validationOptions, formAdd);
+form2.enableValidation();
