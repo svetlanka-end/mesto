@@ -23,7 +23,7 @@ const validationOptions = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
-    inactiveButtonClass: 'popup__button_disabled',
+    inactiveButtonClass: 'popup__save_disabled',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 }
@@ -57,6 +57,8 @@ function resetError(popup) {
     popup.querySelectorAll(popupInput).forEach((item) => {
         item.classList.remove(popupInputError);
     })
+    //для повтоного открытия попапа с активной кнопкой
+    popup.querySelector('.popup__save').classList.add('popup__save_disabled');
 }
 
 editButton.addEventListener('click', function() {
@@ -93,7 +95,6 @@ addPopupButton.addEventListener('click', function() {
     showPopup(popupAdd);
     formAddNewCard.reset();
     resetError(popupAdd);
-    popupAdd.querySelector('.popup__save').classList.add('popup__button_disabled');
 });
 
 popupAddCloseButton.addEventListener('click', function() {
