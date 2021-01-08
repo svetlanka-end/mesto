@@ -22,7 +22,7 @@
             <button type="button" class="profile__add-button" aria-label="add"></button>
         </section>
         <section class="grid">
-        <template class="grid-tamplate">
+        <template class="grid-template">
             <div class="grid__element">
                     <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
                     <button class="grid__delete" aria-label="delete" type="button"></button>
@@ -41,7 +41,7 @@
             <div class="popup__content">
                 <button type="button" class="popup__close"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__form popup__form1" name="form" id='popupName'>
+                <form class="popup__form popup__form-editing" name="form" id='popupName'>
                     <div class="popup__input-form">
                         <input placeholder='Имя' id='name-input' class="popup__input popup__input_type_name" value="Жак-Ив Кусто" name="firstname" required minlength='2' maxlength='40' autocomplete="off">
                         <span class='popup__input-error input-error' id='name-input-error'></span>
@@ -50,7 +50,7 @@
                         <input placeholder='Профессия' id='description-input' class="popup__input popup__input_type_title" value="Исследователь океана" name="lastname" required minlength='2' maxlength='200'>
                         <span class='popup__input-error input-error' id='description-input-error'></span>
                     </div>
-                    <button type="submit" class="popup__save">Сохранить</button>
+                    <button type="submit" class="popup__save popup__button_disabled">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -68,7 +68,7 @@
                      <input placeholder='Ссылка на картинку' id='url-input' class="popup__input popup__input_type_photo-add" name="photo" type="url" novalidate required>
                      <span class='popup__input-error input-error' id='url-input-error'></span>
                     </div>
-                    <button type="submit" class="popup__save">Создать</button>
+                    <button type="submit" class="popup__save popup__button_disabled">Создать</button>
                 </form>
             </div>
         </div>
@@ -82,7 +82,8 @@
             </div>
         </div>
     </div>
-    <script src="./scripts/validate.js" type="module"></script>
+    <script src="scripts/initial-сards.js"></script>
+    <script src="./scripts/FormValidator.js" type="module"></script>
     <script src="./scripts/index.js" type="module"></script>
 </body>
 </html>
