@@ -1,8 +1,8 @@
 import { FormValidator } from './FormValidator.js'
 import { Card } from './Card.js'
 
-const popupEdit = document.querySelector('.popup_place_edit');
-const popupCloseButton = document.querySelector('.popup__close');
+const popupEdit = document.querySelector('.popup_profile_edit');
+const popupEditCloseButton = document.querySelector('.popup__close_place_edit');
 const editButton = document.querySelector('.profile__edit-button');
 const firstName = document.querySelector('.profile__first-name');
 const lastName = document.querySelector('.profile__last-name');
@@ -12,6 +12,7 @@ const lastFieles = document.querySelector('.popup__input_type_title');
 const mestoList = document.querySelector('.grid');
 const popupAdd = document.querySelector('.popup_place_add');
 const popupAddCloseButton = document.querySelector('.popup__close_place_add');
+const popupPhotoCloseButton = document.querySelector('.popup__close_place_photo');
 const addPopupButton = document.querySelector('.profile__add-button');
 const formAddNewCard = document.querySelector('.popup__form_place_add');
 const nameAdd = document.querySelector('.popup__input_type_name-add');
@@ -25,15 +26,17 @@ const validationOptions = {
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'popup__save_disabled',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
+    errorClass: 'popup__error_visible',
+    inputErrorClassActive: 'popup__input-error_active'
 }
-const escape = "Escape";
+const ESCAPE = "Escape";
 const popupInput = ".popup__input";
 const popupInputError = "popup__input_type_error";
 const templateDiv = '.grid-template';
+const popupPhoto = document.querySelector('.popup_place_photo');
 
 function closeEsc(evt) {
-    if (evt.key === escape) {
+    if (evt.key === ESCAPE) {
         popupArray.forEach((item) => {
             closePopup(item);
         })
@@ -57,8 +60,6 @@ function resetError(popup) {
     popup.querySelectorAll(popupInput).forEach((item) => {
         item.classList.remove(popupInputError);
     })
-    //для повтоного открытия попапа с активной кнопкой
-    popup.querySelector('.popup__save').classList.add('popup__save_disabled');
 }
 
 editButton.addEventListener('click', function() {
@@ -66,20 +67,25 @@ editButton.addEventListener('click', function() {
     nameField.value = firstName.textContent;
     lastFieles.value = lastName.textContent;
     resetError(popupEdit);
+    popupEdit.querySelector('.popup__save').classList.remove('popup__save_disabled')
 });
 
-popupCloseButton.addEventListener('click', function() {
+popupEditCloseButton.addEventListener('click', function() {
     closePopup(popupEdit);
 });
 
-function submitForm (event) {
+popupPhotoCloseButton.addEventListener('click', function() {
+    closePopup(popupPhoto);
+});
+
+function submitProfileFormHandler (event) {
     event.preventDefault();
     firstName.textContent = nameField.value;
     lastName.textContent = lastFieles.value;
     closePopup(popupEdit);
 }
 
-form.addEventListener('submit', submitForm);
+form.addEventListener('submit', submitProfileFormHandler);
 
 /**
  *  добавление карточек
@@ -95,6 +101,7 @@ addPopupButton.addEventListener('click', function() {
     showPopup(popupAdd);
     formAddNewCard.reset();
     resetError(popupAdd);
+    popupAdd.querySelector('.popup__save').classList.add('popup__save_disabled');
 });
 
 popupAddCloseButton.addEventListener('click', function() {

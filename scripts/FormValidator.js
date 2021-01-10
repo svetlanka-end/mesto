@@ -3,21 +3,22 @@ export class FormValidator {
     this.opt = opt;
     this.formElement = element;
     this._inactiveButtonClass = opt.inactiveButtonClass;
-    this._inputErrorClass = opt.inputErrorClass;
+    this._errorClass = opt.errorClass;
+    this._inputErrorClass = opt.inputErrorClassActive;
   }
 
   _showError(input, errorMessage) {
     const error = this.formElement.querySelector(`#${input.id}-error`);
     error.textContent = errorMessage;
-    input.classList.add(this._inputErrorClass);
-    error.classList.add('popup__input-error_active');
+    input.classList.add(this._errorClass);
+    error.classList.add(this._inputErrorClass);
   }
 
   _hideError(input) {
     const error = this.formElement.querySelector(`#${input.id}-error`);
     error.textContent = '';
-    input.classList.remove(this._inputErrorClass);
-    error.classList.remove('popup__input-error_active');
+    input.classList.remove(this._errorClass);
+    error.classList.remove(this._inputErrorClass);
   }
 
   _checkValiditiy = (inputElement) => {
