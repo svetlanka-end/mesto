@@ -1,3 +1,4 @@
+import { ESCAPE } from './constants.js'
 export class Card {
     constructor(nameCard, linkCard, template) {
         this._templateSelector = template;
@@ -33,7 +34,7 @@ export class Card {
     }
 
     _showPopup = () => {
-        document.querySelector('.popup__name-photo').textContent = this._name;
+        this._popupNamePhoto.textContent = this._name;
         this._photoPopup.src = this._link;
         this._photoPopup.alt = this._name;
         this._popupPlacePhoto.classList.add('popup_opened');
@@ -46,7 +47,7 @@ export class Card {
     }
 
     _closeEsc = (evt) => {
-        if (evt.key === this.ESCAPE) {
+        if (evt.key === ESCAPE) {
                 this._closePopup();
         }
     }
@@ -62,7 +63,8 @@ export class Card {
         this._mestoElement.querySelector('.grid__name').textContent = this._name;
         this._mestoPhoto = this._mestoElement.querySelector('.grid__photo');
         this._mestoPhoto.src = this._link;
-        this.ESCAPE = "Escape";
+        this._mestoPhoto.alt = this._name;
+        this._popupNamePhoto = document.querySelector('.popup__name-photo');
 
         this._mestoDelete = this._mestoElement.querySelector('.grid__delete');
         this._likeButton = this._mestoElement.querySelector('.grid__like-button');

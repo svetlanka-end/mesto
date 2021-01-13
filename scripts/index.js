@@ -1,4 +1,5 @@
-import { FormValidator } from './FormValidator.js'
+import { ESCAPE }from './constants.js';
+import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js'
 
 const popupEdit = document.querySelector('.popup_profile_edit');
@@ -25,13 +26,9 @@ const validationOptions = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'popup__save_disabled',
-    inputErrorClass: 'popup__input_type_error',
+    inputErrorClass: 'popup__input_type_error', 
     errorClass: 'popup__error_visible',
-    inputErrorClassActive: 'popup__input-error_active'
 }
-const ESCAPE = "Escape";
-const popupInput = ".popup__input";
-const popupInputError = "popup__input_type_error";
 const templateDiv = '.grid-template';
 const popupPhoto = document.querySelector('.popup_place_photo');
 
@@ -53,20 +50,11 @@ function closePopup (popup) {
     document.removeEventListener('keyup', closeEsc);
 }
 
-function resetError(popup) {
-    popup.querySelectorAll('.input-error').forEach((item) => {
-        item.textContent = '';
-    })
-    popup.querySelectorAll(popupInput).forEach((item) => {
-        item.classList.remove(popupInputError);
-    })
-}
-
 editButton.addEventListener('click', function() {
     showPopup(popupEdit);
     nameField.value = firstName.textContent;
     lastFieles.value = lastName.textContent;
-    resetError(popupEdit);
+    formEditingNameValidate.resetValidation();
     popupEdit.querySelector('.popup__save').classList.remove('popup__save_disabled')
 });
 
@@ -100,7 +88,7 @@ function addCard(container, cardElement) {
 addPopupButton.addEventListener('click', function() {
     showPopup(popupAdd);
     formAddNewCard.reset();
-    resetError(popupAdd);
+    formAddNewCardValidate.resetValidation();
     popupAdd.querySelector('.popup__save').classList.add('popup__save_disabled');
 });
 
