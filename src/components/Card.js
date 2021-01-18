@@ -1,4 +1,3 @@
-import { ESCAPE } from './constants.js'
 export class Card {
     constructor(nameCard, linkCard, template, handleCardClick) {
         this._templateSelector = template;

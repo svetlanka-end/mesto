@@ -1,20 +1,28 @@
 import '../pages/index.css';
-import { FormValidator } from './FormValidator.js';
-import { Card } from './Card.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import { Section } from './Section.js';
-import { initialCards } from './initial-cards.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { UserInfo } from './UserInfo.js';
-import { nameProfile, infoProfile, popupEdit,
-        editButton, popupAdd, addPopupButton, formAddNewCard,
-        formEditingName, validationOptions, templateDiv } from './constants.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Card } from '../components/Card.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { Section } from '../components/Section.js';
+import { initialCards } from '../utils/initial-cards.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { validationOptions, templateDiv } from '../utils/constants.js';
 
+const nameProfile = document.querySelector('.popup__input_type_name');
+const infoProfile = document.querySelector('.popup__input_type_title');
+const popupEdit = document.querySelector('.popup_profile_edit');
+const editButton = document.querySelector('.profile__edit-button');
+const popupAdd = document.querySelector('.popup_place_add');
+const addPopupButton = document.querySelector('.profile__add-button');
+const formAddNewCard = document.querySelector('.popup__form_place_add');
+const formEditingName = document.querySelector('.popup__form-editing');
+const savePopupEdit = popupEdit.querySelector('.popup__save');
+const savePopupAdd = popupAdd.querySelector('.popup__save');
 
-const PopupImage = new PopupWithImage('.popup_place_photo');
+const popupImage = new PopupWithImage('.popup_place_photo');
 
 function handleCardClick(name, link) {
-    PopupImage.open(name, link);
+    popupImage.open(name, link);
 };
 
 const cardSection = new Section({items: initialCards, 
@@ -42,7 +50,7 @@ const popupAddCard = new PopupWithForm('.popup_place_add', (event, {mesto, photo
 
 popupProfileEdit.setEventListeners();
 popupAddCard.setEventListeners();
-PopupImage.setEventListeners();
+popupImage.setEventListeners();
 
 
 editButton.addEventListener('click', function() {
@@ -51,13 +59,13 @@ editButton.addEventListener('click', function() {
     nameProfile.value = info.profileName;
     infoProfile.value = info.profileInfo;
     formEditingNameValidate.resetValidation();
-    popupEdit.querySelector('.popup__save').classList.remove('popup__save_disabled')
+    savePopupEdit.classList.remove('popup__save_disabled')
 });
 
 addPopupButton.addEventListener('click', function() {
     popupAddCard.open();
     formAddNewCardValidate.resetValidation();
-    popupAdd.querySelector('.popup__save').classList.add('popup__save_disabled');
+    savePopupAdd.classList.add('popup__save_disabled');
 });
 
 const formEditingNameValidate = new FormValidator(validationOptions, formEditingName);

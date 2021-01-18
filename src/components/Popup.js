@@ -1,4 +1,4 @@
-import { ESCAPE } from './constants.js';
+import { ESCAPE } from '../utils/constants.js';
 
 export class Popup {
     constructor(selector) {

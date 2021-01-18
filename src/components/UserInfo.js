@@ -6,7 +6,7 @@ export class UserInfo {
 
     getUserInfo = () => {
         return {
-            profileName: document.querySelector('.profile__first-name').textContent,
+            profileName: this._profileName.textContent,
             profileInfo: this._profileInfo.textContent,
         }
     }
