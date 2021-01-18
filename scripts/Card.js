@@ -1,9 +1,10 @@
 import { ESCAPE } from './constants.js'
 export class Card {
-    constructor(nameCard, linkCard, template) {
+    constructor(nameCard, linkCard, template, handleCardClick) {
         this._templateSelector = template;
         this._name = nameCard;
         this._link = linkCard;
+        this.handleCardClick = handleCardClick;
     }
 
     _getTemplate = () => {
@@ -29,27 +30,8 @@ export class Card {
 
     _setPhotoEventListener = () => {
         this._mestoPhoto.addEventListener('click', () => {
-            this._showPopup();
+            this.handleCardClick(this._name, this._link);
         });
-    }
-
-    _showPopup = () => {
-        this._popupNamePhoto.textContent = this._name;
-        this._photoPopup.src = this._link;
-        this._photoPopup.alt = this._name;
-        this._popupPlacePhoto.classList.add('popup_opened');
-        document.addEventListener('keyup', this._closeEsc);
-    }
-
-    _closePopup = () => {
-        this._popupPlacePhoto.classList.remove('popup_opened');
-        document.removeEventListener('keyup', this._closeEsc);
-    }
-
-    _closeEsc = (evt) => {
-        if (evt.key === ESCAPE) {
-                this._closePopup();
-        }
     }
 
     _setEventListeners = () => {
