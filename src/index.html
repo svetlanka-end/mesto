@@ -12,10 +12,13 @@
         </header>
         <section class="profile">
             <div class="profile__description">
-                <img class="profile__avatar" alt="Аватар" src="<%=require('./images/avatar.jpg')%>">
+                <div class="profile__avatar-container">
+                    <img class="profile__avatar" alt="Аватар" src="">
+                    <div class="profile__avatar-back"></div>
+                </div>
                 <div class="profile__profile-info">
-                    <h1 class="profile__first-name">Жак-Ив Кусто</h1><button type="button" class="profile__edit-button" aria-label="edit"></button>
-                    <p class="profile__last-name">Исследователь океана</p>
+                    <h1 class="profile__first-name"></h1><button type="button" class="profile__edit-button" aria-label="edit"></button>
+                    <p class="profile__last-name"></p>
                 </div>
             </div>
             <button type="button" class="profile__add-button" aria-label="add"></button>
@@ -24,10 +27,12 @@
         <template class="grid-template">
             <div class="grid__element">
                     <img alt="Фотография из путешеуствия" class="grid__photo" src="./images/kirill-pershin-1088404-unsplash.jpg">
-                    <button class="grid__delete" aria-label="delete" type="button"></button>
                 <div class="grid__info">
                     <h2 class="grid__name">Карачаевск</h2>
-                    <button type="button" class="grid__like-button" aria-label="like"></button>
+                    <div class="gride__like-container">
+                      <button type="button" class="grid__like-button" aria-label="like"></button>
+                      <p class="grid__like-kolvo">3</p>
+                    </div>
                 </div>
             </div>
         </template>
@@ -80,6 +85,32 @@
                 <button type="button" class="popup__close popup__close_place_photo"></button>
             </div>
         </div>
+
+        <div class="popup popup_new-avatar">
+            <div class="popup__popup-close"></div>
+            <div class="popup__content">
+                <button type="button" class="popup__close popup__close_place_new-avatar"></button>
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form class="popup__form popup__form_place_new-avatar" name="form">
+                    <div class="popup__input-form">
+                      <input placeholder='Ссылка на новую фотографию' id='new-avatar-input' class="popup__input popup__input_type_name-add" name="avatar" type="url" novalidate required>
+                      <span class='popup__input-error input-error' id='new-avatar-input-error'></span>
+                    </div>
+                    <button type="submit" class="popup__save popup__save_disabled popup__save_new-avatar">Сохранить</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_delete">
+            <div class="popup__popup-close"></div>
+            <div class="popup__content popup_delete-content">
+                <button type="button" class="popup__close"></button>
+                <h3 class="popup__title">Вы уверены?</h3>
+                <button type="submit" class="popup__save popup__close_place_delete">Да</button>
+            </div>
+        </div>
+        <template class="delete-temlate">
+            <button class="grid__delete" aria-label="delete" type="button"></button>
+        </template>
     </div>
 </body>
 </html>

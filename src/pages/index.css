@@ -46,5 +46,11 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__popup-close/popup__popup-close.css);
+@import url(../blocks/grid/__like-kolvo/grid__like-kolvo.css);
+@import url(../blocks/grid/__like-container/gride__like-container.css);
+@import url(../blocks/profile/__avatar-back/profile__avatar-back.css);
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../blocks/popup/_delete-content/popup_delete-content.css);
+@import url(../blocks/popup/__close/_place/popup__close_place_delete.css);
 
 

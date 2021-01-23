@@ -2,10 +2,9 @@
     background-image: url(../../../images/like.svg);
     background-color: transparent;
     background-repeat: no-repeat;
-    width: 23px;
+    width: 22px;
+    height: 19px;
     border: none;
-    margin: 6px 0 0 0;
-    overflow: visible;
     cursor: pointer;
     padding: 0;
     outline: none;
