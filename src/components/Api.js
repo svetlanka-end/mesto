@@ -13,12 +13,7 @@ export class Api {
             authorization: this.authorization
           }
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            } else {
-            return Promise.reject(`Ошибка: ${res.status}`)
-        }})
+        .then(this._checkResponse)
           .catch((err) => {
             console.log(err);
           }); 
@@ -36,17 +31,13 @@ export class Api {
             about: newInfo
           })
         })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._checkResponse)
         .catch((err) => {
             console.log(err);
           }); 
     }
 
-    setNewCard(name, link, savePopupAdd) {
+    setNewCard(name, link) {
         return fetch(`${this.baseUrl}/cards`, {
           method: 'POST',
           headers: {
@@ -58,18 +49,14 @@ export class Api {
             link: link
           })
         })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._checkResponse)
         .catch((err) => {
             console.log(err);
           }); 
     }
 
     deleteCard(cardId) {
-        fetch(`${this.baseUrl}/cards/${cardId}`, {
+        return fetch(`${this.baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
               authorization: this.authorization
@@ -87,13 +74,7 @@ export class Api {
               authorization: this.authorization
             }
           })
-          .then(res => {
-            if (res.ok) {
-              return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-          })
+          .then(this._checkResponse)
           .then((result) => {
               return result.likes.length;
           })
@@ -109,13 +90,7 @@ export class Api {
               authorization: this.authorization
             }
           })
-          .then(res => {
-            if (res.ok) {
-              return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-          })
+          .then(this._checkResponse)
           .then((result) => {
               return result.likes.length;
           })
@@ -124,8 +99,8 @@ export class Api {
           }); 
     }
 
-    submitNewAvatar(link, newAvatarSave) {
-        fetch(`${this.baseUrl}/users/me/avatar`, {
+    submitNewAvatar(link) {
+        return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
               authorization: this.authorization,
@@ -135,16 +110,25 @@ export class Api {
               avatar: link
             })
           })
-          .then(res => {
-            if (res.ok) {
-                newAvatarSave.textContent = 'Сохранить';
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-          })
+          .then(this._checkResponse)
           .catch((err) => {
             console.log(err);
           }); 
     }
+
+    getArrCard() {
+      return fetch('https://mesto.nomoreparties.co/v1/cohort-19/cards', {
+            headers: {
+            authorization: 'a29b2060-5a9c-4cf9-ba7c-9a2b349e7a4f'
+            }
+        })
+    }
+
+    _checkResponse(res) {
+      if (res.ok) {
+          return res.json();
+      }
+      return Promise.reject(`Ошибка ${res.status}`);
+  }
 
 }

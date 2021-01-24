@@ -52,5 +52,6 @@
 @import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
 @import url(../blocks/popup/__content/_delete/popup__content_delete.css);
 @import url(../blocks/popup/__save/_place/popup__save_place_delete.css);
+@import url(../blocks/grid/__delete/_opened/grid_delete_opened.css);
 
 

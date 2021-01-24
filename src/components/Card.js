@@ -1,16 +1,17 @@
 export class Card {
-    constructor(nameCard, linkCard, template, handleCardClick, likeArr, userId, openPopupDelete, confirmationDelet, cardId, likeCard, deleteLikeButton) {
+    constructor(value, template, functionForNewCard) {
         this._templateSelector = template;
-        this._name = nameCard;
-        this._link = linkCard;
-        this.handleCardClick = handleCardClick;
-        this.likeArr = likeArr;
-        this.userId = userId;
-        this.openPopupDelete = openPopupDelete;
-        this.confirmationDelet = confirmationDelet;
-        this.cardId = cardId;
-        this.likeCard = likeCard;
-        this.deleteLikeButton = deleteLikeButton;
+        this._name = value.name;
+        this._link = value.link;
+        this.handleCardClick = functionForNewCard.handleCardClick;
+        this.likeArr = value.likes.length;
+        this.userId = value.owner._id;
+        this.openPopupDelete = functionForNewCard.openPopupDelete;
+        this.confirmationDelet = functionForNewCard.confirmationDelet;
+        this.cardId = value._id;
+        this.likeCard = functionForNewCard.likeButton;
+        this.deleteLikeButton = functionForNewCard.deleteLikeButton;
+        this.setApiDelete = functionForNewCard.setApiDelete;
     }
 
     _getTemplate = () => {
@@ -25,16 +26,20 @@ export class Card {
     _setDeleteCardEventListener = () => {
         const myId = '628398ed1ac027afa1393731';
         if (this.userId === myId) {
-            const buttonDelete = document
-                .querySelector('.delete-temlate')
-                .content
-                .cloneNode(true);
-            this._mestoElement.querySelector('.grid__element').prepend(buttonDelete);
-            this._mestoDelete = this._mestoElement.querySelector('.grid__delete');
-            this._mestoDelete.addEventListener('click', event => {
+            this._mestoDeleteButton.classList.add('grid__delete_opened')
+            this._mestoDeleteButton.addEventListener('click', event => {
                 this.openPopupDelete();
-                this.confirmationDelet(this.cardId, event);
-            });
+
+                this.confirmationDelet(() => {
+                    this.setApiDelete(this.cardId)
+                        .then(() => {
+                            event.target.closest('.grid__element').remove();
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                })
+            })
         }
     }
 
@@ -43,11 +48,17 @@ export class Card {
             if (!this._likeButton.classList.contains('grid__button_active')) {
                 this._likeButton.classList.add('grid__button_active');
                 this.likeCard(this.cardId)
-                    .then((res) => this.renewalQuantityLike(res));
+                    .then((res) => this.renewalQuantityLike(res))
+                    .catch((err) => {
+                        console.log(err);
+                      });
             } else {
                 this._likeButton.classList.remove('grid__button_active');
                 this.deleteLikeButton(this.cardId)
-                    .then((res) => this.renewalQuantityLike(res));
+                    .then((res) => this.renewalQuantityLike(res))
+                    .catch((err) => {
+                        console.log(err);
+                      });
             }
         })
     }
@@ -80,6 +91,7 @@ export class Card {
         this._mestoPhoto.src = this._link;
         this._mestoPhoto.alt = this._name;
         this._popupNamePhoto = document.querySelector('.popup__name-photo');
+        this._mestoDeleteButton = this._mestoElement.querySelector('.grid__delete');
 
         
         this._likeButton = this._mestoElement.querySelector('.grid__like-button');
