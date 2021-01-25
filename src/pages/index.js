@@ -6,24 +6,24 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
-import { validationOptions, templateDiv } from '../utils/constants.js';
-import { FormAddNewCardValidate } from '../components/FormAddNewCardValidate.js';
-import { FormEditingNameValidate } from '../components/FormEditingNameValidate.js';
-import { FormNewAvatarValidate } from '../components/FormNewAvatarValidate.js';
+import { validationOptions, templateDiv, selectorPopupInputTypeName, selectorPopupInputTypeTitle, selectorPopupProfileEdit,
+    selectorProfileEditButton, selectorProfileAddButton, selectorPopupAddCardForm, selectorPopupEditForm, 
+    selectorPopupSaveButton, selectorPopupNewAvatarForm, selectorPopupNewAvatarContainer, selectorPopupAddCard} from '../utils/constants.js';
+import { FormValidator } from '../components/FormValidator.js';
 
-const nameProfile = document.querySelector('.popup__input_type_name');
-const infoProfile = document.querySelector('.popup__input_type_title');
-const popupEdit = document.querySelector('.popup_profile_edit');
-const editButton = document.querySelector('.profile__edit-button');
-const popupAdd = document.querySelector('.popup_place_add');
-const addPopupButton = document.querySelector('.profile__add-button');
-const formAddNewCard = document.querySelector('.popup__form_place_add');
-const formEditingName = document.querySelector('.popup__form-editing');
-const savePopupEdit = popupEdit.querySelector('.popup__save');
-const savePopupAdd = popupAdd.querySelector('.popup__save');
-const formNewAvatar = document.querySelector('.popup__form_place_new-avatar');
-const profileAvatar = document.querySelector('.profile__avatar-container');
-const newAvatarSave = formNewAvatar.querySelector('.popup__save');
+const nameProfile = document.querySelector(selectorPopupInputTypeName);
+const infoProfile = document.querySelector(selectorPopupInputTypeTitle);
+const popupEdit = document.querySelector(selectorPopupProfileEdit);
+const editButton = document.querySelector(selectorProfileEditButton);
+const popupAdd = document.querySelector(selectorPopupAddCard);
+const addPopupButton = document.querySelector(selectorProfileAddButton);
+const formAddNewCard = document.querySelector(selectorPopupAddCardForm);
+const formEditingName = document.querySelector(selectorPopupEditForm);
+const savePopupEdit = popupEdit.querySelector(selectorPopupSaveButton);
+const savePopupAdd = popupAdd.querySelector(selectorPopupSaveButton);
+const formNewAvatar = document.querySelector(selectorPopupNewAvatarForm);
+const profileAvatar = document.querySelector(selectorPopupNewAvatarContainer);
+const newAvatarSave = formNewAvatar.querySelector(selectorPopupSaveButton);
 
 function likeButton(cardId) {
     return api.likeCard(cardId);
@@ -104,7 +104,7 @@ const getInfoProfile = new UserInfo({
     avatarSelector: '.profile__avatar'
 });
 
-const popupProfileEdit = new PopupWithForm('.popup_profile_edit', (event, {firstname, lastname}) => {
+const popupProfileEdit = new PopupWithForm(selectorPopupProfileEdit, (event, {firstname, lastname}) => {
     event.preventDefault();
     savePopupEdit.textContent = 'Сохранение...';
     api.setUserInfo(firstname, lastname)
@@ -118,7 +118,7 @@ const popupProfileEdit = new PopupWithForm('.popup_profile_edit', (event, {first
         });
 });
 
-const popupAddCard = new PopupWithForm('.popup_place_add', (event, {mesto, photo}) => {
+const popupAddCard = new PopupWithForm(selectorPopupAddCard, (event, {mesto, photo}) => {
     event.preventDefault();
     savePopupAdd.textContent = 'Создание...';
     api.setNewCard(mesto, photo, savePopupAdd)
@@ -145,8 +145,6 @@ const popupNewAvatar = new PopupWithForm('.popup_new-avatar', (event, {avatar}) 
         .catch((err) => {
             console.log(err);
         }); 
-
-    document.querySelector('.profile__avatar').src = avatar;
 })
 
 const popupDelete = new PopupDelete('.popup_delete');
@@ -164,23 +162,23 @@ editButton.addEventListener('click', function() {
     nameProfile.value = info.profileName;
     infoProfile.value = info.profileInfo;
     formEditingNameValidate.resetValidation();
-    formEditingNameValidate.doButtonDisalead();
+    formEditingNameValidate.toggleButtonState();
 });
 
 addPopupButton.addEventListener('click', function() {
     popupAddCard.open();
     formAddNewCardValidate.resetValidation();
-    formAddNewCardValidate.doButtonDisalead();
+    formAddNewCardValidate.toggleButtonState();
 });
 
 profileAvatar.addEventListener('click', function() {
     popupNewAvatar.open();
-    formNewAvatarValidate.doButtonDisalead();
+    formNewAvatarValidate.toggleButtonState();
 });
 
-const formEditingNameValidate = new FormEditingNameValidate(validationOptions, formEditingName, savePopupEdit);
+const formEditingNameValidate = new FormValidator(validationOptions, formEditingName);
 formEditingNameValidate.enableValidation();
-const formAddNewCardValidate = new FormAddNewCardValidate(validationOptions, formAddNewCard, savePopupAdd);
+const formAddNewCardValidate = new FormValidator(validationOptions, formAddNewCard);
 formAddNewCardValidate.enableValidation();
-const formNewAvatarValidate = new FormNewAvatarValidate(validationOptions, formNewAvatar, newAvatarSave);
+const formNewAvatarValidate = new FormValidator(validationOptions, formNewAvatar);
 formNewAvatarValidate.enableValidation();

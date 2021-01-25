@@ -4,7 +4,7 @@ export class Card {
         this._name = value.name;
         this._link = value.link;
         this.handleCardClick = functionForNewCard.handleCardClick;
-        this.likeArr = value.likes.length;
+        this.likeArr = value.likes;
         this.userId = value.owner._id;
         this.openPopupDelete = functionForNewCard.openPopupDelete;
         this.confirmationDelet = functionForNewCard.confirmationDelet;
@@ -46,19 +46,31 @@ export class Card {
     _setLikeEventListener = () => {
         this._likeButton.addEventListener('click', () => {
             if (!this._likeButton.classList.contains('grid__button_active')) {
-                this._likeButton.classList.add('grid__button_active');
                 this.likeCard(this.cardId)
-                    .then((res) => this.renewalQuantityLike(res))
+                    .then((res) => {
+                        this.renewalQuantityLike(res);
+                        this._likeButton.classList.add('grid__button_active');
+                    })
                     .catch((err) => {
                         console.log(err);
                       });
             } else {
-                this._likeButton.classList.remove('grid__button_active');
                 this.deleteLikeButton(this.cardId)
-                    .then((res) => this.renewalQuantityLike(res))
+                    .then((res) => { 
+                        this.renewalQuantityLike(res);
+                        this._likeButton.classList.remove('grid__button_active');
+                    })
                     .catch((err) => {
                         console.log(err);
                       });
+            }
+        })
+    }
+
+    _stateLikeButton() {
+        this.likeArr.forEach((item) => {
+            if (item._id === '628398ed1ac027afa1393731') {
+                this._likeButton.classList.add('grid__button_active');
             }
         })
     }
@@ -74,7 +86,7 @@ export class Card {
     }
 
     _displayQuantityLike() {
-        this._likeCounter.textContent = this.likeArr;
+        this._likeCounter.textContent = this.likeArr.length;
     }
 
     _setEventListeners = () => {
@@ -82,6 +94,7 @@ export class Card {
         this._setLikeEventListener();
         this._setDeleteCardEventListener();
         this._displayQuantityLike();
+        this._stateLikeButton()
     }
 
     createCard = () => {
