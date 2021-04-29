@@ -1,4 +1,4 @@
-# Проект 9: Место
+# Учебный проект: Место
 
 **Описание**
 
@@ -6,7 +6,4 @@
 
 **Ссылка**
 
-* [Ссылка на готовый проект](https://svetlanka-end.github.io/mesto/index.html)
-
-
-
+- [Ссылка на готовый проект](https://svetlanka-end.github.io/mesto/index.html)

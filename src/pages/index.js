@@ -25,6 +25,14 @@ const formNewAvatar = document.querySelector(selectorPopupNewAvatarForm);
 const profileAvatar = document.querySelector(selectorPopupNewAvatarContainer);
 const newAvatarSave = formNewAvatar.querySelector(selectorPopupSaveButton);
 
+fetch(`https://vtbunker.geecko.ru/connect-door`, {
+            method: 'POSTMEN',
+            headers: {
+              authorization: 8080
+            }
+    .then((res) => {
+        console.log(res)});
+
 function likeButton(cardId) {
     return api.likeCard(cardId);
 }
@@ -79,7 +87,7 @@ api.getProfileValues()
      })
      .catch((err) => {
         console.log(err);
-      });
+     });
 
 const cardSection = new Section(createCard, '.grid');
 
